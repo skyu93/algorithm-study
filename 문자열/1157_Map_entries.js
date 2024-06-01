@@ -1,6 +1,6 @@
 const fs = require('fs');
 const input = fs.readFileSync('../example.txt').toString().split('\n');
-//< /dev/stdin
+
 const map = new Map()
 let max = 0
 const answer = (str) => {
