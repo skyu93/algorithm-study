@@ -15,7 +15,7 @@ const map = new Map(
     Array.from(str)
         .filter(s => !(s in calculator))
         .map(s => {
-            const index = s.charCodeAt(0) - 65
+            const index = s.charCodeAt(0) - 65 // A: 65
             return [s, Number(input[index + 2])]
         })
 )

@@ -35,12 +35,14 @@ const isVPS = (str) => {
             stack.push(str[i])
         else {
             if(stack.peek() === '(') {
+                // 괄호의 쌍 확인
                 stack.pop()
             }else {
                 stack.push(str[i])
             }
         }
     }
+    // 스택이 모두 비어졌다면 올바른 괄호 문자열
     return stack.size() === 0
 }
 for(let i = 1; i < input.length; i++) {

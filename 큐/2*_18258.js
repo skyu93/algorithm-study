@@ -22,8 +22,8 @@ class Queue {
     }
     push(data) {
         // 배열에 실제로 데이터는 있지만 사용 가능한 데이터가 비어 있는 경우
-        // 처음을 가르키는 인덱스를 초기화
         if(this.empty()) {
+            // 처음을 가르키는 인덱스를 초기화
             this.index = this.array.length
         }
         this.array.push(Number(data))
