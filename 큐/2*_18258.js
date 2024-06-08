@@ -35,7 +35,6 @@ class Queue {
         this.index += 1
         return value
     }
-
     front() {
         if(this.empty()) return -1
         return this.array[this.index]

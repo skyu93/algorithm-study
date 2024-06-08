@@ -15,11 +15,9 @@ class Node {
     }
 }
 class LinkedList {
-    head = null
-    currentNode = null
     constructor() {
-        this.head = new Node(null);
-        this.currentNode = this.head;
+        this.head = new Node(null)
+        this.currentNode = this.head
     }
     prev() {
         if(!this.currentNode.prev) return
@@ -29,46 +27,48 @@ class LinkedList {
         if(!this.currentNode.next) return
         this.currentNode = this.currentNode.next
     }
-    push(data) {
+    append(data) {
         const node = new Node(data)
-        node.prev = this.currentNode;  // 새로운 노드의 prev를 현재 노드로 설정
-        node.next = this.currentNode.next;  // 새로운 노드의 next를 현재 노드의 next로 설정
+        node.prev = this.currentNode
+        node.next = this.currentNode.next
 
-        if (this.currentNode.next !== null) {
-            // 중간에 있는 데이터인 경우 다음 노드의 prev는 새로운 노드
-            this.currentNode.next.prev = node;
+        // 현재 노드에서 다음 노드가 있다면
+        if(this.currentNode.next){
+            // 이전 노드의 prev를 현재노드와 연결
+            this.currentNode.next.prev = node
         }
 
-        this.currentNode.next = node;  // 현재 노드의 next를 새로운 노드로 설정
-        this.currentNode = node;  // 현재 노드를 새로운 노드로 업데이트
+        // 현재 노드는 새로운 노드의 앞으로 가기 때문에 다음 노드는 현재 노드로 설정
+        this.currentNode.next = node
+
+        // 현재 노드는 새로운 노드
+        this.currentNode = node
     }
     delete() {
-        if (this.currentNode === this.head) return
-        const prevNode = this.currentNode.prev;
-        const nextNode = this.currentNode.next;
-
-        if (nextNode !== null) {
-            nextNode.prev = prevNode;  // 다음 노드의 prev를 이전 노드로 설정
+        if(!this.currentNode.prev) return
+        const { prev, next } = this.currentNode
+        if(prev) {
+            prev.next = next
         }
-        if (prevNode !== null) {
-            prevNode.next = nextNode;  // 이전 노드의 next를 다음 노드로 설정
+        if(next) {
+            next.prev = prev
         }
-
-        this.currentNode = prevNode;  // 현재 노드를 이전 노드로 업데이트
+        this.currentNode = prev
     }
     print() {
-        let result = '';
-        let node = this.head.next;
-        while (node) {
-            result += node.data;
-            node = node.next;
+        let result = ''
+        let node = this.head.next
+        while (node){
+            result += node.data
+            node = node.next
         }
         return result
     }
 }
+
 const linkedList = new LinkedList()
 for(let i = 0; i < str.length; i++){
-    linkedList.push(str[i])
+    linkedList.append(str[i])
 }
 
 for(let i = 2; i < input.length; i++) {
@@ -84,7 +84,7 @@ for(let i = 2; i < input.length; i++) {
             linkedList.delete()
             break
         case 'P':
-            linkedList.push(data)
+            linkedList.append(data)
             break
     }
 }
