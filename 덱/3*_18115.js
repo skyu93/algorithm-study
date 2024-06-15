@@ -17,7 +17,6 @@ class Deque {
         this.tail = null
         this.size = 0
     }
-
     addFront(value) {
         const node = new Node(value)
         if(this.size === 0) {
@@ -27,7 +26,7 @@ class Deque {
             this.head.prev = node
             this.head = node
         }
-        this.size++
+        this.size += 1
     }
     addRear(value) {
         const node = new Node(value)
@@ -38,28 +37,29 @@ class Deque {
             this.tail.next = node
             this.tail = node
         }
-        this.size++
+        this.size += 1
     }
     addFrontNext(value) {
         if(this.size < 1) return
-        const node = new Node(value)
 
+        const node = new Node(value)
         node.prev = this.head;
         node.next = this.head.next;
+
         if (this.head.next) {
             this.head.next.prev = node;
         } else {
             this.tail = node;
         }
         this.head.next = node;
-        this.size++
+
+        this.size += 1
     }
     print() {
         if(this.size === 0) return ''
         let node = this.head
-        let size = this.size
         let result = ''
-        while (size--) {
+        while (node) {
             result += ` ${node.value}`
             node = node.next
         }
@@ -72,17 +72,21 @@ const cards = Array
     .map((_, i) => i + 1)
 const deque = new Deque()
 
+
 input[1]
     .split(' ')
-    .reverse()
+    .reverse() // 복구하기 위해 역순
     .forEach((s, i) => {
         const card = cards[i]
         if(s === '1') {
-            deque.addFront(card)
+            // 제일 위의 카드 1장을 바닥에 내려놓는다.
+            deque.addFront(card) // 제일 아래 카드를 둔다
         } else if(s === '2') {
-            deque.addFrontNext(card)
+            // 위에서 두 번째 카드를 바닥에 내려놓는다
+            deque.addFrontNext(card) // 제일 아래에서 두번째에 카드를 둔다.
         } else if(s === '3') {
-            deque.addRear(card)
+            // 제일 밑에 있는 카드를 바닥에 내려놓는다.
+            deque.addRear(card) // 제일 위에 카드를 둔다.
         }
 })
 

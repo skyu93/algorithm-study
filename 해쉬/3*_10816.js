@@ -11,7 +11,6 @@ input[1]
         map.set(num, (map.get(num) ?? 0) + 1)
 })
 
-
 console.log(
     input[3]
         .split(' ')
