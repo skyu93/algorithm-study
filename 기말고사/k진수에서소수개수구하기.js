@@ -1,15 +1,23 @@
 function solution(n, k) {
-    const test = n.toString(k)
-    parseInt('211', 3)
-  return test
+    let count = 0
+    n.toString(k)
+        .split(/0+/g)
+        .forEach(s => {
+            const num = Number(s)
+            if(isPrime(num)) {
+                count++
+            }
+    })
+  return count
 }
 const isPrime = (num) => {
-    if(num === 1 || num === 2) return true
-    for(let i = 3; i <= Math.sqrt(num); i++) {
-        if(num % i === 0) return false
+    if(num < 2) return false
+    for(let i = 2; i <= Math.sqrt(num); i++) {
+        if(num % i === 0) { // 나눠지면 소수가 아님
+            return false
+        }
     }
     return true
 }
-console.log('teo', parseInt('211', 3))
-console.log('teo', isPrime(17))
 console.log(solution(437674, 3))
+console.log(solution(110011, 10))
